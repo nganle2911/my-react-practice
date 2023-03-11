@@ -16,7 +16,11 @@ import BaiTapXemChiTiet from './props/BaiTapXemChiTiet/BaiTapXemChiTiet';
 // Import CSS - Affect to the whole application
 import "./index.scss";
 
-
+// React Router Structure 
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
+import Home from './Pages/Home/Home';
+import Register from './Pages/Register/Register';
+import Login from './Pages/Login/Login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -41,6 +45,15 @@ root.render(
         {/* <DemoProps /> */}
         {/* <BaiTapShoeShop /> */}
         {/* <BaiTapXemChiTiet /> */}
+
+        {/* React Router Dom */}
+        <BrowserRouter>
+            <Routes>
+                <Route path="home" element={<Home />}></Route>
+                <Route path="register" element={<Register />}></Route>
+                <Route path="login" element={<Login />}></Route>
+            </Routes>
+        </BrowserRouter>
     </>
 ); 
 
