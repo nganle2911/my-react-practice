@@ -18,7 +18,6 @@ import "./index.scss";
 
 
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // Phương thức đưa dữ liệu lên trên <div id="root"></div>
