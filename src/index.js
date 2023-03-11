@@ -40,7 +40,7 @@ root.render(
         {/* <TangGiamFontSize /> */}
         {/* <DemoProps /> */}
         {/* <BaiTapShoeShop /> */}
-        <BaiTapXemChiTiet />
+        {/* <BaiTapXemChiTiet /> */}
     </>
 ); 
 
