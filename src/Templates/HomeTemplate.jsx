@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 export default class HomeTemplate extends Component {
   render() {
     return (
       <div>
         <header className='nav bg-dark text-white p-2'>
-            <a className='nav-link' href='/home'>Home</a>
-            <a className='nav-link' href='/register'>Register</a>
-            <a className='nav-link' href='/login'>Login</a>
+            <NavLink className='nav-link' to='/home'>Home</NavLink>
+            <NavLink className='nav-link' to='/register'>Register</NavLink>
+            <NavLink className='nav-link' to='/login'>Login</NavLink>
         </header>
         <div className='content' style={{minHeight: '75vh'}}>
             <Outlet />
@@ -19,4 +19,6 @@ export default class HomeTemplate extends Component {
     )
   }
 }
+
+
 
