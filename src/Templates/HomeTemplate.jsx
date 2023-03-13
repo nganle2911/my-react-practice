@@ -6,9 +6,9 @@ export default class HomeTemplate extends Component {
     return (
       <div>
         <header className='nav bg-dark text-white p-2'>
-            <NavLink className='nav-link' to='/home'>Home</NavLink>
-            <NavLink className='nav-link' to='/register'>Register</NavLink>
-            <NavLink className='nav-link' to='/login'>Login</NavLink>
+            <NavLink className={({isActive}) => isActive ? 'nav-link fw-bold text-info text-uppercase' : 'nav-link'} to='/home'>Home</NavLink>
+            <NavLink className={({isActive}) => isActive ? 'nav-link fw-bold text-info text-uppercase' : 'nav-link'} to='/register'>Register</NavLink>
+            <NavLink className={({isActive}) => isActive ? 'nav-link fw-bold text-info text-uppercase' : 'nav-link'} to='/login'>Login</NavLink>
         </header>
         <div className='content' style={{minHeight: '75vh'}}>
             <Outlet />

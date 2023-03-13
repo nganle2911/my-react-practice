@@ -13,3 +13,12 @@
     color: black;
     font-weight: bold;
 }
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+
+    &:hover {
+        color: white;
+    }
+}
