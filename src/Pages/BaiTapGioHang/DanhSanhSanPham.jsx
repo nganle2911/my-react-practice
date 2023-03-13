@@ -79,16 +79,18 @@ const data = [
 export default class DanhSanhSanPham extends Component {
 
     renderPhone = () => {
+        const {addToCart} = this.props; 
         const arrPhone = data.map((item, index) => {
             // console.log(item); 
             return <div className='col-4 mt-3' key={index}>
-                <SanPham item={item} />
+                <SanPham item={item} addToCart={addToCart} />
             </div>
         })
         return arrPhone; 
     }
 
   render() {
+    
     return (
       <div className='row'>
         {this.renderPhone()}

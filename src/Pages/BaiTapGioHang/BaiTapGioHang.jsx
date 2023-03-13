@@ -10,12 +10,22 @@ export default class BaiTapGioHang extends Component {
         ]
     }
 
+    addToCart = (spClicked) => {
+        console.log(spClicked);
+        let newGioHang = this.state.gioHang; 
+        newGioHang.push(spClicked); 
+
+        this.setState({
+            gioHang: newGioHang
+        })
+    }
+
   render() {
     return (
       <div className='container mb-5'>
         <h3 className='text-center mt-2'>Cart Exercice</h3>
         <GioHang gioHang={this.state.gioHang} />
-        <DanhSanhSanPham />
+        <DanhSanhSanPham addToCart={this.addToCart} />
       </div>
     )
   }
