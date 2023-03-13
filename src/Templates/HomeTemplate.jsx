@@ -9,6 +9,9 @@ export default class HomeTemplate extends Component {
             <NavLink className={({isActive}) => isActive ? 'nav-link fw-bold text-info text-uppercase' : 'nav-link'} to='/home'>Home</NavLink>
             <NavLink className={({isActive}) => isActive ? 'nav-link fw-bold text-info text-uppercase' : 'nav-link'} to='/register'>Register</NavLink>
             <NavLink className={({isActive}) => isActive ? 'nav-link fw-bold text-info text-uppercase' : 'nav-link'} to='/login'>Login</NavLink>
+            <NavLink className={({isActive}) => isActive ? 'nav-link fw-bold text-info text-uppercase' : 'nav-link'} to='/baitapgiohang'>
+            <i class="fa fa-cart-plus"></i> Cart
+            </NavLink>
         </header>
         <div className='content' style={{minHeight: '75vh'}}>
             <Outlet />

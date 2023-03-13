@@ -23,6 +23,7 @@ import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
 import HomeTemplate from "./Templates/HomeTemplate";
 import Page404 from "./Pages/Page404/Page404";
+import BaiTapGioHang from "./Pages/BaiTapGioHang/BaiTapGioHang";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -57,6 +58,7 @@ root.render(
           <Route path="home" element={<Home />}></Route>
           <Route path="register" element={<Register />}></Route>
           <Route path="login" element={<Login />}></Route>
+          <Route path="baitapgiohang" element={<BaiTapGioHang />}></Route>
           
           {/* <Route path="*" element={<Page404 />}></Route> */}
           <Route path="*" element={<Navigate to="" />}></Route>
