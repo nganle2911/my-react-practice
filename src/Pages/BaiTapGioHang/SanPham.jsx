@@ -11,7 +11,7 @@ export default class SanPham extends Component {
             <h4>{tenSP}</h4>
             <p>{giaBan.toLocaleString()} VND</p>
             <button className='btn btn-primary' onClick={() => {
-                addToCart(this.props.item)
+                addToCart(this.props.item);
             }}>
                 Add to cart <i class="fa fa-cart-plus"></i>
             </button>

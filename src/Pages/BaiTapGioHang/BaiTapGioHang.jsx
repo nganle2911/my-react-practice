@@ -6,14 +6,23 @@ export default class BaiTapGioHang extends Component {
 
     state = {
         gioHang: [
-            {maSP: 1, tenSP: "Iphone X", giaBan: 1500, hinhAnh: './img/sp_iphoneX.png', soLuong: 3}
+            {maSP: 1, tenSP: "VinSmart Live", giaBan: 5700000, hinhAnh: "./img/vsphone.jpg", soLuong: "1"}
         ]
     }
 
     addToCart = (spClicked) => {
+        spClicked = {...spClicked, soLuong: 1}; 
+
+
         console.log(spClicked);
         let newGioHang = this.state.gioHang; 
-        newGioHang.push(spClicked); 
+        // Xét spClicked có trong giỏ hàng hay chưa 
+        let spGH = newGioHang.find(sp => sp.maSP === spClicked.maSP);
+        if (spGH) {
+          spGH.soLuong++; 
+        } else {
+          newGioHang.push(spClicked); 
+        }
 
         this.setState({
             gioHang: newGioHang
