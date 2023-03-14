@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class GioHang extends Component {
   render() {
-    const { gioHang } = this.props;
+    const { gioHang, deleteCart } = this.props;
     // console.log(gioHang)
     return (
       <table className="table">
@@ -36,7 +36,9 @@ export default class GioHang extends Component {
                 <td>{item.giaBan.toLocaleString()}</td>
                 <td>{(item.giaBan * item.soLuong).toLocaleString()}</td>
                 <td>
-                  <button className="btn btn-danger mx-1">
+                  <button className="btn btn-danger mx-1" onClick={() => {
+                    deleteCart(item.maSP);
+                  }}>
                     <i class="fa fa-trash-alt"></i>
                   </button>
                   <button className="btn btn-primary">

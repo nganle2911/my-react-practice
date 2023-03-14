@@ -10,6 +10,23 @@ export default class BaiTapGioHang extends Component {
         ]
     }
 
+    deleteCart = (maSpClicked) => {
+      // console.log(spClicked);
+      let gioHang = this.state.gioHang; 
+
+      let index = gioHang.findIndex(sp => sp.maSP === maSpClicked);
+      if (index !== -1) {
+        gioHang.splice(index,1); 
+      }
+
+      // Cach 2: 
+      // gioHang = gioHang.filter(sp => sp.maSP !== maSpClicked); 
+
+      this.setState({
+        gioHang: gioHang
+      })
+    }
+
     addToCart = (spClicked) => {
         spClicked = {...spClicked, soLuong: 1}; 
 
@@ -33,7 +50,7 @@ export default class BaiTapGioHang extends Component {
     return (
       <div className='container mb-5'>
         <h3 className='text-center mt-2'>Cart Exercice</h3>
-        <GioHang gioHang={this.state.gioHang} />
+        <GioHang gioHang={this.state.gioHang} deleteCart={this.deleteCart} />
         <DanhSanhSanPham addToCart={this.addToCart} />
       </div>
     )
