@@ -68,7 +68,7 @@ export default class ReactForm extends Component {
                 </div>
                 <div className="form-group">
                   <p>Product Type</p>
-                  <select name="productType" className="form-control">
+                  <select name="productType" className="form-control" onInput={this.handleChangeInput}>
                     <option value={"phone"}>phone</option>
                     <option value={"tablet"}>tablet</option>
                     <option value={"laptop"}>laptop</option>
