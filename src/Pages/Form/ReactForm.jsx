@@ -1,9 +1,27 @@
 import React, { Component } from "react";
 
 export default class ReactForm extends Component {
+    
+  state = {
+    formValue: {
+      id: "",
+      name: "",
+      price: "",
+      image: "",
+      productType: "phone", //luôn để giá trị mặc định là option đầu tiên
+      description: "",
+    },
+  };
+
+  handleSubmit = (e) => {
+    // Ngăn sự kiện reload browser
+    e.preventDefault();
+    console.log("submit");
+  };
+
   render() {
     return (
-      <form className="container">
+      <form className="container" onSubmit={this.handleSubmit}>
         <h3>Create Product</h3>
         <div className="card">
           <div className="card-header">Product Info</div>
@@ -44,7 +62,9 @@ export default class ReactForm extends Component {
             </div>
           </div>
           <div className="card-footer">
-            <button className="btn btn-success m-2" type="submit">Create</button>
+            <button className="btn btn-success m-2" type="submit">
+              Create
+            </button>
           </div>
         </div>
       </form>
