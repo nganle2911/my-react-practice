@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TableProduct from "./TableProduct";
 
 export default class ReactForm extends Component {
 
@@ -45,9 +46,10 @@ export default class ReactForm extends Component {
     // Ngăn sự kiện reload browser
     e.preventDefault();
     if (!this.checkFormValid()) {
+      alert("Form is invalid !"); 
       return ; //nếu form ko hợp lệ => không submit 
     }
-    
+
     console.log("submit", this.state.formValue);
   };
 
@@ -114,58 +116,116 @@ export default class ReactForm extends Component {
 
   render() {
     return (
-      <form className="container" onSubmit={this.handleSubmit}>
-        <h3>Create Product</h3>
-        <div className="card">
-          <div className="card-header">Product Info</div>
-          <div className="card-body">
-            <div className="row">
-              <div className="col-6">
-                <div className="form-group">
-                  <p>ID</p>
-                  <input className="form-control" name="id" data-maxlength={"6"} onInput={this.handleChangeInput} />
-                  {this.state.formError.id ? <div className="alert alert-danger mt-2">{this.state.formError.id}</div> : ""}
+      <>
+        <form className="container" onSubmit={this.handleSubmit}>
+          <h3>Create Product</h3>
+          <div className="card">
+            <div className="card-header">Product Info</div>
+            <div className="card-body">
+              <div className="row">
+                <div className="col-6">
+                  <div className="form-group">
+                    <p>ID</p>
+                    <input
+                      className="form-control"
+                      name="id"
+                      data-maxlength={"6"}
+                      onInput={this.handleChangeInput}
+                    />
+                    {this.state.formError.id ? (
+                      <div className="alert alert-danger mt-2">
+                        {this.state.formError.id}
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="form-group">
+                    <p>Name</p>
+                    <input
+                      className="form-control"
+                      name="name"
+                      datatype="fullname"
+                      onInput={this.handleChangeInput}
+                    />
+                    {this.state.formError.name && (
+                      <div className="alert alert-danger">
+                        {this.state.formError.name}
+                      </div>
+                    )}
+                  </div>
+                  <div className="form-group">
+                    <p>Price</p>
+                    <input
+                      className="form-control"
+                      name="price"
+                      datatype="number"
+                      onInput={this.handleChangeInput}
+                    />
+                    {this.state.formError.price && (
+                      <div className="alert alert-danger">
+                        {this.state.formError.price}
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className="form-group">
-                  <p>Name</p>
-                  <input className="form-control" name="name" datatype="fullname" onInput={this.handleChangeInput} />
-                  {this.state.formError.name && <div className="alert alert-danger">{this.state.formError.name}</div>}
-                </div>
-                <div className="form-group">
-                  <p>Price</p>
-                  <input className="form-control" name="price" datatype="number" onInput={this.handleChangeInput} />
-                  {this.state.formError.price && <div className="alert alert-danger">{this.state.formError.price}</div>}
-                </div>
-              </div>
-              <div className="col-6">
-                <div className="form-group">
-                  <p>Image</p>
-                  <input className="form-control" name="image" onInput={this.handleChangeInput} />
-                  {this.state.formError.image && <div className="alert alert-danger">{this.state.formError.image}</div>}
-                </div>
-                <div className="form-group">
-                  <p>Product Type</p>
-                  <select name="productType" className="form-control" onInput={this.handleChangeInput}>
-                    <option value={"phone"}>phone</option>
-                    <option value={"tablet"}>tablet</option>
-                    <option value={"laptop"}>laptop</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <p>Description</p>
-                  <input className="form-control" name="description" onInput={this.handleChangeInput} />
-                  {this.state.formError.description && <div className="alert alert-danger">{this.state.formError.description}</div>}
+                <div className="col-6">
+                  <div className="form-group">
+                    <p>Image</p>
+                    <input
+                      className="form-control"
+                      name="image"
+                      onInput={this.handleChangeInput}
+                    />
+                    {this.state.formError.image && (
+                      <div className="alert alert-danger">
+                        {this.state.formError.image}
+                      </div>
+                    )}
+                  </div>
+                  <div className="form-group">
+                    <p>Product Type</p>
+                    <select
+                      name="productType"
+                      className="form-control"
+                      onInput={this.handleChangeInput}
+                    >
+                      <option value={"phone"}>phone</option>
+                      <option value={"tablet"}>tablet</option>
+                      <option value={"laptop"}>laptop</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <p>Description</p>
+                    <input
+                      className="form-control"
+                      name="description"
+                      onInput={this.handleChangeInput}
+                    />
+                    {this.state.formError.description && (
+                      <div className="alert alert-danger">
+                        {this.state.formError.description}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
+            <div className="card-footer">
+              <button
+                className="btn btn-success m-2"
+                disabled={this.state.valid}
+                type="submit"
+              >
+                Create
+              </button>
+            </div>
           </div>
-          <div className="card-footer">
-            <button className="btn btn-success m-2" disabled={this.state.valid} type="submit">
-              Create
-            </button>
-          </div>
+        </form>
+        <div className="container mt-2">
+          <TableProduct />
         </div>
-      </form>
+      </>
     );
   }
 }
