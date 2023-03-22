@@ -21,7 +21,13 @@ export default class ReactForm extends Component {
       description: ""
     },
     // Create a state for form submit 
-    valid: true //form invalid 
+    valid: false, //form invalid 
+
+    arrProduct: [
+      {id: "1", name: "iphone X", image: "https://picsum.photos/id/237/50/50", price: 1000, productType: "phone", description: "product 1"},
+      {id: "2", name: "iphone XS", image: "https://picsum.photos/id/152/50/50", price: 2000, productType: "phone", description: "product 2"},
+      {id: "3", name: "samSung X", image: "https://picsum.photos/id/252/50/50", price: 2500, productType: "tablet", description: "product 3"}
+    ],
   };
 
   // check formValid 
@@ -35,10 +41,10 @@ export default class ReactForm extends Component {
     let {formError, formValue} = this.state; 
     for (let key in formError) {
       if (formError[key] !== "" || formValue[key] === "") {
-        return true; 
+        return false; 
       } 
     }
-    return false; 
+    return true; 
   }
 
   // Hàm xử lý onSubmit cho form 
@@ -50,8 +56,25 @@ export default class ReactForm extends Component {
       return ; //nếu form ko hợp lệ => không submit 
     }
 
-    console.log("submit", this.state.formValue);
+    // Thêm sản phẩm vào arrProduct => cập nhật state arrProduct
+    let arrProduct = this.state.arrProduct; 
+    let newProduct = {...this.state.formValue}; 
+    arrProduct.push(newProduct); 
+    this.setState({
+      arrProduct: arrProduct
+    })
+
+    // console.log("submit", this.state.formValue);
   };
+
+  handleDelProduct = (idClicked) => {
+    // Lấy ra các sản phẩm có mã khác sản phẩm mình xoá 
+    let arrProduct = this.state.arrProduct.filter(prod => prod.id !== idClicked); 
+
+    this.setState({
+      arrProduct: arrProduct
+    })
+  }
 
     // Hàm xử lý input khi user nhập vào 
   handleChangeInput = (e) => { 
@@ -214,7 +237,7 @@ export default class ReactForm extends Component {
             <div className="card-footer">
               <button
                 className="btn btn-success m-2"
-                disabled={this.state.valid}
+                disabled={!this.state.valid}
                 type="submit"
               >
                 Create
@@ -223,7 +246,7 @@ export default class ReactForm extends Component {
           </div>
         </form>
         <div className="container mt-2">
-          <TableProduct />
+          <TableProduct arrProduct={this.state.arrProduct} handleDelProduct={this.handleDelProduct} />
         </div>
       </>
     );

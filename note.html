@@ -1,0 +1,13 @@
+<script>
+    handleSubmit = (e) => {
+        // Thêm sản phẩm vào arrProduct => cập nhật state arrProduct
+        let arrProduct = this.state.arrProduct;
+
+        let newProduct = {...this.state.formValue}; 
+        arrProduct.push(newProduct);
+         
+        this.setState({
+            arrProduct: arrProduct
+        })
+    }
+</script>

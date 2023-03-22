@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 export default class TableProduct extends Component {
   render() {
+    const {arrProduct, handleDelProduct} = this.props; 
+    // console.log(arrProduct);
     return (
       <table className="table">
         <thead className="bg-dark text-white">
@@ -16,7 +18,32 @@ export default class TableProduct extends Component {
           </tr>
         </thead>
         <tbody>
-          <tr>
+          {arrProduct.map((item, index) => {
+            {/* console.log(item); */}
+            return (
+              <tr key={index}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>
+                    <img src={item.image} />
+                </td>
+                <td>{item.price}</td>
+                <td>{item.productType}</td>
+                <td>{item.description}</td>
+                <td>
+                  <button className="btn btn-danger" onClick={() => {
+                    handleDelProduct(item.id);
+                  }}>
+                    <i class="fa fa-trash-alt"></i>
+                  </button>
+                  <button className="btn btn-primary mx-2">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+          {/* <tr>
             <td>ID</td>
             <td>Name</td>
             <td>Image</td>
@@ -31,7 +58,7 @@ export default class TableProduct extends Component {
                     <i class="fa fa-edit"></i> 
                 </button>
             </td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
     );
