@@ -11,8 +11,9 @@ export default class ReactForm extends Component {
       productType: "phone", //luôn để giá trị mặc định là option đầu tiên
       description: "",
     },
+    
     formError: {
-      id: "ID is invalid !",
+      id: "",
       name: "",
       price: "",
       image: "",
@@ -29,18 +30,30 @@ export default class ReactForm extends Component {
 
     // Hàm xử lý input khi user nhập vào 
   handleChangeInput = (e) => {
-    let value = e.target.value; //tablet 
-    let name = e.target.name; //productType 
-    // let {value, name} = e.target; 
+    // let value = e.target.value; //tablet 
+    // let name = e.target.name; //productType 
+    let {value, name} = e.target; 
     
     // Lấy object formValue ra xử lý riêng 
     let newFormValue = this.state.formValue; 
     // Thay đổi state sau khi user nhập vào input - dùng dynamic key cho [name]
     newFormValue[name] = value; 
 
+    /**
+     * ? Execute errors for Form 
+     */
+    let newFormErr = this.state.formError;
+    let message = "";
+    if (value.trim() === "") {
+      message = name + " cannot be blank !";
+    }
+    newFormErr[name] = message; 
+    
+    
     // setState 
     this.setState({
-        formValue: newFormValue
+        formValue: newFormValue,
+        formError: newFormErr
     }, () => {
         console.log(this.state); 
     })
@@ -65,17 +78,19 @@ export default class ReactForm extends Component {
                 <div className="form-group">
                   <p>Name</p>
                   <input className="form-control" name="name" onInput={this.handleChangeInput} />
-                  {this.state.formError.name && <div className="alert alert-danger">{this.state.formValue.name}</div> }
+                  {this.state.formError.name && <div className="alert alert-danger">{this.state.formError.name}</div>}
                 </div>
                 <div className="form-group">
                   <p>Price</p>
                   <input className="form-control" name="price" onInput={this.handleChangeInput} />
+                  {this.state.formError.price && <div className="alert alert-danger">{this.state.formError.price}</div>}
                 </div>
               </div>
               <div className="col-6">
                 <div className="form-group">
                   <p>Image</p>
                   <input className="form-control" name="image" onInput={this.handleChangeInput} />
+                  {this.state.formError.image && <div className="alert alert-danger">{this.state.formError.image}</div>}
                 </div>
                 <div className="form-group">
                   <p>Product Type</p>
@@ -88,6 +103,7 @@ export default class ReactForm extends Component {
                 <div className="form-group">
                   <p>Description</p>
                   <input className="form-control" name="description" onInput={this.handleChangeInput} />
+                  {this.state.formError.description && <div className="alert alert-danger">{this.state.formError.description}</div>}
                 </div>
               </div>
             </div>
