@@ -29,11 +29,10 @@ export default class ReactForm extends Component {
   };
 
     // Hàm xử lý input khi user nhập vào 
-  handleChangeInput = (e) => {
-    // let value = e.target.value; //tablet 
-    // let name = e.target.name; //productType 
+  handleChangeInput = (e) => { 
     let {value, name} = e.target; 
-    
+    let dataType = e.target.getAttribute("datatype"); 
+
     // Lấy object formValue ra xử lý riêng 
     let newFormValue = this.state.formValue; 
     // Thay đổi state sau khi user nhập vào input - dùng dynamic key cho [name]
@@ -46,10 +45,28 @@ export default class ReactForm extends Component {
     let message = "";
     if (value.trim() === "") {
       message = name + " cannot be blank !";
+    } else {
+      // regex number 
+      if (dataType == "number") {
+        let regexNum = /^\d+(,\d{1,2})?$/; 
+        if (!regexNum.test(value)) {
+          message = name + " is invalid !"; 
+        }
+      }
+
+      // regex name 
+      if (dataType == "fullname") {
+        let regexName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+        if (!regexName.test(value)) {
+          message = name + " is invalid !";
+        }
+      }
+     
     }
+
     newFormErr[name] = message; 
     
-    
+
     // setState 
     this.setState({
         formValue: newFormValue,
@@ -77,12 +94,12 @@ export default class ReactForm extends Component {
                 </div>
                 <div className="form-group">
                   <p>Name</p>
-                  <input className="form-control" name="name" onInput={this.handleChangeInput} />
+                  <input className="form-control" name="name" datatype="fullname" onInput={this.handleChangeInput} />
                   {this.state.formError.name && <div className="alert alert-danger">{this.state.formError.name}</div>}
                 </div>
                 <div className="form-group">
                   <p>Price</p>
-                  <input className="form-control" name="price" onInput={this.handleChangeInput} />
+                  <input className="form-control" name="price" datatype="number" onInput={this.handleChangeInput} />
                   {this.state.formError.price && <div className="alert alert-danger">{this.state.formError.price}</div>}
                 </div>
               </div>
