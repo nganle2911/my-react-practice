@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class TableProduct extends Component {
   render() {
-    const {arrProduct, handleDelProduct} = this.props; 
+    const {arrProduct, handleDelProduct, handleEditProduct} = this.props; 
     // console.log(arrProduct);
     return (
       <table className="table">
@@ -36,7 +36,9 @@ export default class TableProduct extends Component {
                   }}>
                     <i class="fa fa-trash-alt"></i>
                   </button>
-                  <button className="btn btn-primary mx-2">
+                  <button className="btn btn-primary mx-2" onClick={() => {
+                    handleEditProduct(item);
+                  }}>
                     <i class="fa fa-edit"></i>
                   </button>
                 </td>

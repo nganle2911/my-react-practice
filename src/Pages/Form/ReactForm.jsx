@@ -30,6 +30,38 @@ export default class ReactForm extends Component {
     ],
   };
 
+  handleEditProduct = (prodClicked) => {
+    // console.log(prodClicked);
+    // Click vào product nào thì state của formValue sẽ được thay đổi giá trị thành product đó 
+    this.setState({
+      formValue : prodClicked
+    }, () => {
+      this.setState({
+        valid: this.checkFormValid()
+      })
+    })
+  }
+
+  handleUpdateProduct = () => {
+    // console.log("abc");
+    // Tìm ra sản phẩm chứa mã tương đương formValue.id 
+    let {arrProduct, formValue} = this.state;
+    let prodUpdated = arrProduct.find(prod => prod.id === formValue.id);  
+
+    if (prodUpdated) {
+      // prodUpdated.name = formValue.name;
+      for (let key in prodUpdated) {
+        if (key !== "id") {
+          prodUpdated[key] = formValue[key];
+        }
+      } 
+    }
+
+    this.setState({
+      arrProduct: arrProduct
+    })
+  }
+
   // check formValid 
   checkFormValid = () => {
     // return true | false: true khi form không hợp lệ, false khi form hợp lệ 
@@ -138,6 +170,8 @@ export default class ReactForm extends Component {
   }
 
   render() {
+    let {formValue} = this.state; 
+
     return (
       <>
         <form className="container" onSubmit={this.handleSubmit}>
@@ -152,6 +186,7 @@ export default class ReactForm extends Component {
                     <input
                       className="form-control"
                       name="id"
+                      value={formValue.id}
                       data-maxlength={"6"}
                       onInput={this.handleChangeInput}
                     />
@@ -168,6 +203,7 @@ export default class ReactForm extends Component {
                     <input
                       className="form-control"
                       name="name"
+                      value={formValue.name}
                       datatype="fullname"
                       onInput={this.handleChangeInput}
                     />
@@ -182,6 +218,7 @@ export default class ReactForm extends Component {
                     <input
                       className="form-control"
                       name="price"
+                      value={formValue.price}
                       datatype="number"
                       onInput={this.handleChangeInput}
                     />
@@ -198,6 +235,7 @@ export default class ReactForm extends Component {
                     <input
                       className="form-control"
                       name="image"
+                      value={formValue.image}
                       onInput={this.handleChangeInput}
                     />
                     {this.state.formError.image && (
@@ -211,6 +249,7 @@ export default class ReactForm extends Component {
                     <select
                       name="productType"
                       className="form-control"
+                      value={formValue.productType}
                       onInput={this.handleChangeInput}
                     >
                       <option value={"phone"}>phone</option>
@@ -223,6 +262,7 @@ export default class ReactForm extends Component {
                     <input
                       className="form-control"
                       name="description"
+                      value={formValue.description}
                       onInput={this.handleChangeInput}
                     />
                     {this.state.formError.description && (
@@ -242,11 +282,20 @@ export default class ReactForm extends Component {
               >
                 Create
               </button>
+              <button 
+                className="btn btn-warning mx-2"
+                disabled={!this.state.valid}
+                onClick={() => {
+                  this.handleUpdateProduct()
+                }}
+                >
+                  Update
+              </button>
             </div>
           </div>
         </form>
         <div className="container mt-2">
-          <TableProduct arrProduct={this.state.arrProduct} handleDelProduct={this.handleDelProduct} />
+          <TableProduct arrProduct={this.state.arrProduct} handleDelProduct={this.handleDelProduct} handleEditProduct={this.handleEditProduct} />
         </div>
       </>
     );
