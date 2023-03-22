@@ -171,7 +171,6 @@ export default class ReactForm extends Component {
 
   render() {
     let {formValue} = this.state; 
-
     return (
       <>
         <form className="container" onSubmit={this.handleSubmit}>
