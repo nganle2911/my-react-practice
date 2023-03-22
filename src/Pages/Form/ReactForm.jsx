@@ -18,10 +18,29 @@ export default class ReactForm extends Component {
       price: "",
       image: "",
       description: ""
-    }
+    },
+    // Create a state for form submit 
+    valid: true //form invalid 
   };
 
-    // Hàm xử lý onSubmit cho form 
+  // check formValid 
+  checkFormValid = () => {
+    // return true | false: true khi form không hợp lệ, false khi form hợp lệ 
+    /**
+     * Form hợp lệ khi: Các trường formError = rỗng, và các trường value tương ứng phải khác rỗng 
+     */
+
+    // Kiểm tra từng thuộc tính trong state.formError phải hợp lệ (= rỗng)
+    let {formError, formValue} = this.state; 
+    for (let key in formError) {
+      if (formError[key] !== "" || formValue[key] === "") {
+        return true; 
+      } 
+    }
+    return false; 
+  }
+
+  // Hàm xử lý onSubmit cho form 
   handleSubmit = (e) => {
     // Ngăn sự kiện reload browser
     e.preventDefault();
@@ -32,6 +51,7 @@ export default class ReactForm extends Component {
   handleChangeInput = (e) => { 
     let {value, name} = e.target; 
     let dataType = e.target.getAttribute("datatype"); 
+    let dataMaxLen = e.target.getAttribute("data-maxlength"); 
 
     // Lấy object formValue ra xử lý riêng 
     let newFormValue = this.state.formValue; 
@@ -56,10 +76,16 @@ export default class ReactForm extends Component {
 
       // regex name 
       if (dataType == "fullname") {
-        let regexName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+        let regexName =
+          /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/g;
         if (!regexName.test(value)) {
           message = name + " is invalid !";
         }
+      }
+
+      // data max length
+      if (dataMaxLen !== null && value.length > dataMaxLen) {
+        message = name + ` has only maximum ${dataMaxLen} characters !`;
       }
      
     }
@@ -72,7 +98,11 @@ export default class ReactForm extends Component {
         formValue: newFormValue,
         formError: newFormErr
     }, () => {
-        console.log(this.state); 
+
+        // Gọi hàm check lỗi sau mỗi lần cập nhật value và error từ người dùng nhập
+        this.setState({
+          valid: this.checkFormValid()
+        }) 
     })
 
     console.log(name, value);
@@ -89,7 +119,7 @@ export default class ReactForm extends Component {
               <div className="col-6">
                 <div className="form-group">
                   <p>ID</p>
-                  <input className="form-control" name="id" onInput={this.handleChangeInput} />
+                  <input className="form-control" name="id" data-maxlength={"6"} onInput={this.handleChangeInput} />
                   {this.state.formError.id ? <div className="alert alert-danger mt-2">{this.state.formError.id}</div> : ""}
                 </div>
                 <div className="form-group">
@@ -126,7 +156,7 @@ export default class ReactForm extends Component {
             </div>
           </div>
           <div className="card-footer">
-            <button className="btn btn-success m-2" type="submit">
+            <button className="btn btn-success m-2" disabled={this.state.valid} type="submit">
               Create
             </button>
           </div>
