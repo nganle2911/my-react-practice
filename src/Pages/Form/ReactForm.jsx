@@ -11,24 +11,33 @@ export default class ReactForm extends Component {
       productType: "phone", //luôn để giá trị mặc định là option đầu tiên
       description: "",
     },
+    formError: {
+      id: "ID is invalid !",
+      name: "",
+      price: "",
+      image: "",
+      description: ""
+    }
   };
 
-    // Hàm xử lý obSutmit cho form 
+    // Hàm xử lý onSubmit cho form 
   handleSubmit = (e) => {
     // Ngăn sự kiện reload browser
     e.preventDefault();
-    console.log("submit");
+    console.log("submit", this.state.formValue);
   };
 
     // Hàm xử lý input khi user nhập vào 
   handleChangeInput = (e) => {
-    let value = e.target.value; 
-    let name = e.target.name; 
+    let value = e.target.value; //tablet 
+    let name = e.target.name; //productType 
+    // let {value, name} = e.target; 
     
     // Lấy object formValue ra xử lý riêng 
     let newFormValue = this.state.formValue; 
     // Thay đổi state sau khi user nhập vào input - dùng dynamic key cho [name]
     newFormValue[name] = value; 
+
     // setState 
     this.setState({
         formValue: newFormValue
@@ -51,10 +60,12 @@ export default class ReactForm extends Component {
                 <div className="form-group">
                   <p>ID</p>
                   <input className="form-control" name="id" onInput={this.handleChangeInput} />
+                  {this.state.formError.id ? <div className="alert alert-danger mt-2">{this.state.formError.id}</div> : ""}
                 </div>
                 <div className="form-group">
                   <p>Name</p>
                   <input className="form-control" name="name" onInput={this.handleChangeInput} />
+                  {this.state.formError.name && <div className="alert alert-danger">{this.state.formValue.name}</div> }
                 </div>
                 <div className="form-group">
                   <p>Price</p>
