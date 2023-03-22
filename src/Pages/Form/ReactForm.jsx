@@ -44,6 +44,10 @@ export default class ReactForm extends Component {
   handleSubmit = (e) => {
     // Ngăn sự kiện reload browser
     e.preventDefault();
+    if (!this.checkFormValid()) {
+      return ; //nếu form ko hợp lệ => không submit 
+    }
+    
     console.log("submit", this.state.formValue);
   };
 
