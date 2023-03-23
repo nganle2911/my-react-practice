@@ -7,6 +7,7 @@ export default class ReactLifeCycle extends Component {
     console.log("constructor");
     this.state = {
       number: 1,
+      like: 1
     };
   }
 
@@ -19,15 +20,15 @@ export default class ReactLifeCycle extends Component {
     return null; 
   }
 
-  shouldComponentUpdate(newProps, currentState) {
+  shouldComponentUpdate(newProps, newState) {
     console.log("shouldComponentUpdate");
-    return false; 
+    return true; 
   }
 
   render() {
     console.log("render constructor");
     return (
-      <div className="container">
+      <div className="">
         <h3>number: {this.state.number}</h3>
         <button
           className="btn btn-success"
@@ -39,7 +40,15 @@ export default class ReactLifeCycle extends Component {
         >
           +
         </button>
-        <ChildComponent />
+
+        <button className="btn btn-dark mx-2" onClick={() => {
+          this.setState({
+            like: this.state.like + 1 
+          })
+        }}>
+          <i className="fa fa-heart text-danger"></i>
+        </button>
+        <ChildComponent like={this.state.like} />
       </div>
     );
   }

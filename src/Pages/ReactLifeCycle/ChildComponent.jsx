@@ -12,13 +12,27 @@ export default class ChildComponent extends Component {
     return null;
   }
 
-  shouldComponentUpdate(newProps, currentState) {
+  shouldComponentUpdate(newProps, newState) {
+    // this.props: là props trước khi thay đổi 
+    // newProps: là sau khi thay đổi 
+    console.log("this.props", this.props);
+    console.log("newProps", newProps); 
+    
     console.log("shouldComponentUpdate child");
-    return false;
+    return true;
   }
 
   render() {
-    return <div>ChildComponent</div>;
+    const {like} = this.props; 
+    console.log("render child")
+    return (
+      
+      <div className="container mt-2">
+        <div className="bg-dark text-white p-5">
+          <p>like: {like}</p>
+        </div>
+      </div>
+    );
   }
 
   componentDidMount() {
