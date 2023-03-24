@@ -10,7 +10,8 @@ export default class ReactLifeCycle extends Component {
       like: 1,
       objectLike: {
         like: 5
-      }
+      },
+      count: 30
     };
   }
 
@@ -34,6 +35,7 @@ export default class ReactLifeCycle extends Component {
       <div className="">
         <h3>number: {this.state.number}</h3>
         <h3>object like: {this.state.objectLike.like}</h3>
+        <h3>Count: {this.state.count}</h3>
         <button
           className="btn btn-success"
           onClick={() => {
@@ -62,10 +64,25 @@ export default class ReactLifeCycle extends Component {
     );
   }
 
-  // Can thiệp vào dữ liệu trên giao diện sau khi giao diện đã có
-  // Thường sử dụng để gọi API hoặc sử dụng các thư viện lên html (animation...)
-  // Chạy 1 lần duy nhất và đầu tiên sau khi component render 
+  timeoutFunc = null; 
   componentDidMount() {
+    // Can thiệp vào dữ liệu trên giao diện sau khi giao diện đã có
+    // Thường sử dụng để gọi API hoặc sử dụng các thư viện lên html (animation...)
+    // Chạy 1 lần duy nhất và đầu tiên sau khi component render 
     console.log("ComponentDidMount");
+
+    this.timeoutFunc = setInterval(() => {
+      this.setState({
+        count: this.state.count - 1
+      })
+      console.log("123");
+    }, 1000); //tham số thứ 2 tính bằng mili giây để thực thi arrow function 
+  }
+
+  componentWillUnmount() {
+    // Chạy trước khi component mất khỏi giao diện (React DOM) 
+    if (this.timeoutFunc) {
+      clearInterval(this.timeoutFunc);
+    }
   }
 }

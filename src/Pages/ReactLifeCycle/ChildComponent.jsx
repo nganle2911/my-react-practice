@@ -40,7 +40,7 @@ export default class ChildComponent extends PureComponent {
         <div className="bg-dark text-white p-5">
           <p>like: {objectLike.like}</p>
         </div>
-      </div>
+      </div> 
     );
   }
 
