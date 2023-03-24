@@ -1,24 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, PureComponent } from 'react'
 
-export default class note extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // include state
-    };
-  }
-
-  static getDerivedStateFromProps() {
-    return {
-      // set state
-    };
-  }
-
+export default class note extends PureComponent {
   render() {
-    return <div>{this.state}</div>;
-  }
-
-  componentDidMount() {
-    // Function called after rendering UI
+    return <div>note</div>;
   }
 }
+
+
