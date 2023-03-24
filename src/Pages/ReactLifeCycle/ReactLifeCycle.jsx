@@ -7,7 +7,10 @@ export default class ReactLifeCycle extends Component {
     console.log("constructor");
     this.state = {
       number: 1,
-      like: 1
+      like: 1,
+      objectLike: {
+        like: 5
+      }
     };
   }
 
@@ -30,6 +33,7 @@ export default class ReactLifeCycle extends Component {
     return (
       <div className="">
         <h3>number: {this.state.number}</h3>
+        <h3>object like: {this.state.objectLike.like}</h3>
         <button
           className="btn btn-success"
           onClick={() => {
@@ -42,19 +46,25 @@ export default class ReactLifeCycle extends Component {
         </button>
 
         <button className="btn btn-dark mx-2" onClick={() => {
+          // this.setState({
+          //   like: this.state.like + 1 
+          // })
+          let {objectLike} = this.state; 
+          objectLike.like = objectLike.like + 1; 
           this.setState({
-            like: this.state.like + 1 
+            objectLike: {...objectLike}
           })
         }}>
           <i className="fa fa-heart text-danger"></i>
         </button>
-        <ChildComponent like={this.state.like} />
+        <ChildComponent objectLike={this.state.objectLike} />
       </div>
     );
   }
 
   // Can thiệp vào dữ liệu trên giao diện sau khi giao diện đã có
   // Thường sử dụng để gọi API hoặc sử dụng các thư viện lên html (animation...)
+  // Chạy 1 lần duy nhất và đầu tiên sau khi component render 
   componentDidMount() {
     console.log("ComponentDidMount");
   }
