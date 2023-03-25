@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TableProduct from "./TableProduct";
+import axios from "axios";
 
 export default class ReactForm extends Component {
 
@@ -298,5 +299,20 @@ export default class ReactForm extends Component {
         </div>
       </>
     );
+  }
+
+
+  componentDidMount() {
+    // Gọi API sau khi render thực thi thành công (tại sao gọi ở DidMount vì DidMount chỉ chạy 1 lần duy nhất sau khi render)
+    let promise = axios({
+      url: "http://svcy.myclass.vn/api/Product/GetAll",
+      method: "GET"
+    });
+
+    promise.then(result => {
+      this.setState({
+        arrProduct: result.data 
+      })
+    })
   }
 }
