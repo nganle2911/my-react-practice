@@ -26,6 +26,10 @@ import Page404 from "./Pages/Page404/Page404";
 import BaiTapGioHang from "./Pages/BaiTapGioHang/BaiTapGioHang";
 import ReactForm from "./Pages/Form/ReactForm";
 import ReactLifeCycle from "./Pages/ReactLifeCycle/ReactLifeCycle";
+import DemoRedux from "./Pages/DemoRedux/DemoRedux";
+
+// Cấu hình Redux Store
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -52,22 +56,25 @@ root.render(
     {/* <BaiTapXemChiTiet /> */}
 
     {/* React Router Dom */}
-    <BrowserRouter>
-      <Routes>
-        <Route path="" element={<HomeTemplate />}>
-          <Route index element={<Home />}></Route>
-          
-          <Route path="home" element={<Home />}></Route>
-          <Route path="register" element={<Register />}></Route>
-          <Route path="login" element={<Login />}></Route>
-          <Route path="baitapgiohang" element={<BaiTapGioHang />}></Route>
-          <Route path="form" element={<ReactForm />}></Route>
-          <Route path="reactlifecycle" element={<ReactLifeCycle />}></Route>
-          
-          {/* <Route path="*" element={<Page404 />}></Route> */}
-          <Route path="*" element={<Navigate to="" />}></Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="" element={<HomeTemplate />}>
+            <Route index element={<Home />}></Route>
+
+            <Route path="home" element={<Home />}></Route>
+            <Route path="register" element={<Register />}></Route>
+            <Route path="login" element={<Login />}></Route>
+            <Route path="baitapgiohang" element={<BaiTapGioHang />}></Route>
+            <Route path="form" element={<ReactForm />}></Route>
+            <Route path="reactlifecycle" element={<ReactLifeCycle />}></Route>
+            <Route path="redux" element={<DemoRedux />}></Route>
+
+            {/* <Route path="*" element={<Page404 />}></Route> */}
+            <Route path="*" element={<Navigate to="" />}></Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </>
 );

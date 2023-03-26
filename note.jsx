@@ -1,10 +1,16 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+// Trong file index.js, import Provider - đây là component kết nối Redux Store với component React 
+import {Provider} from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-export default class note extends Component {
-  render() {
-    return (
-      <div>note</div>
-    )
-  }
-}
+root.render(
+  <>
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route></Route>
+        ...
+      </Routes>
+    </BrowserRouter>
+  </Provider>
+  </>
+)
