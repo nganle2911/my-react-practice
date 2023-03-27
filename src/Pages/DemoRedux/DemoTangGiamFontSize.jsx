@@ -18,5 +18,6 @@ export default class DemoTangGiamFontSize extends Component {
   }
 }
 
-
+// Kết nối react với redux => tạo ra component mới có chứa dữ liệu của redux và giao diện của component đó 
+const DemoFontSizeRedux = connect()(DemoTangGiamFontSize); 
 
