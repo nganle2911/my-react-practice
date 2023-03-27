@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 export default class DemoTangGiamFontSize extends Component {
   render() {
@@ -16,3 +17,6 @@ export default class DemoTangGiamFontSize extends Component {
     )
   }
 }
+
+
+

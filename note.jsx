@@ -1,6 +1,6 @@
 // Trong file index.js, import Provider - đây là component kết nối Redux Store với component React 
 import {Provider} from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { store } from "./redux/configStore";
 
 root.render(
   <>
