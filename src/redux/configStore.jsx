@@ -1,8 +1,11 @@
 // File cấu hình store chứa các state của ứng dụng 
-import {configStore} from '@reduxjs/toolkit'; 
+import {configureStore} from '@reduxjs/toolkit'; 
 
-export const store = configStore({
+export const store = configureStore({
     reducer: {
         // Các state ứng dụng đặt tại đây 
+        fontSizeReducer: (state = 16) => {
+            return state; 
+        }
     }
 })
