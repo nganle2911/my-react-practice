@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-export default class DemoTangGiamFontSize extends Component {
+class DemoTangGiamFontSize extends Component {
   render() {
+    console.log(this.props);
     return (
       <div>
         <h3>Exercise 1: Increase / Decrease Font Size</h3>
-        <p>Reprehenderit velit eiusmod fugiat sint aliquip tempor commodo aute enim. Commodo cillum ullamco Lorem cillum cupidatat veniam culpa adipisicing occaecat dolore dolor magna cillum cillum. Adipisicing nulla amet exercitation aute. Mollit qui commodo aliqua mollit pariatur sit proident ipsum ut voluptate culpa mollit deserunt. Commodo in duis consectetur ad nisi irure. Aliquip quis laborum irure mollit elit minim proident culpa proident minim velit.</p>
+        <p>Labore elit mollit dolor consectetur ut magna mollit culpa elit. Id magna pariatur magna voluptate tempor do ex officia cupidatat excepteur qui sit voluptate. Exercitation eu veniam reprehenderit quis qui deserunt. Sint velit minim cupidatat nulla aliqua et fugiat aliquip. Consectetur quis dolore irure cupidatat culpa reprehenderit excepteur minim irure magna. Incididunt pariatur nisi sunt sit consectetur sunt dolor ad.</p>
         <button className='btn btn-primary mx-2'>
             <i class="fa fa-plus"></i>
         </button>
@@ -18,6 +19,20 @@ export default class DemoTangGiamFontSize extends Component {
   }
 }
 
+// Định nghĩa 1 hàm lấy dự liệu redux về 
+const mapStateToProps = (state) => {
+  // Lấy dữ liệu của redux để biến thành props của component 
+  return {
+    fSize: state.fontSizeReducer
+  }
+}
+
 // Kết nối react với redux => tạo ra component mới có chứa dữ liệu của redux và giao diện của component đó 
-const DemoFontSizeRedux = connect()(DemoTangGiamFontSize); 
+const DemoFontSizeRedux = connect(mapStateToProps)(DemoTangGiamFontSize); 
+
+export default DemoFontSizeRedux; 
+
+
+
+
 
