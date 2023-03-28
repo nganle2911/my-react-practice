@@ -19,7 +19,13 @@ class DemoTangGiamFontSize extends Component {
         }}>
             <i class="fa fa-plus"></i>
         </button>
-        <button className='btn btn-secondary'>
+        <button className='btn btn-secondary' onClick={() => {
+          const action = {
+            type: 'TANG_GIAM_FONT_SIZE',
+            payload: -1
+          }
+          this.props.dispatch(action); 
+        }}>
             <i class="fa-solid fa-minus"></i>
         </button>
       </div>
