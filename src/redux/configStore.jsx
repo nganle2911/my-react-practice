@@ -22,7 +22,9 @@ export const store = configureStore({
         },
         imgSrcReducer: (state = "./img/imgRedCar.jpg", action) => {
             switch (action.type) {
-                
+                case 'CHANGE_COLOR':
+                    state = action.payload;
+                    return state; 
             
                 default:
                     return state;
