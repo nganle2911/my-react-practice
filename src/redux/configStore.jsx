@@ -1,5 +1,6 @@
 // File cấu hình store chứa các state của ứng dụng 
 import {configureStore} from '@reduxjs/toolkit'; 
+import { arrUserReducer } from './reducers/arrUserReducer';
 
 export const store = configureStore({
     reducer: {
@@ -29,6 +30,7 @@ export const store = configureStore({
                 default:
                     return state;
             }
-        }
+        },
+        arrUserReducer: arrUserReducer
     }
 })

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BaiTapChonXe from './BaiTapChonXe'
+import BaiTapQuanLyUsers from './BaiTapQuanLyUser/BaiTapQuanLyUsers'
 import DemoTangGiamFontSize from './DemoTangGiamFontSize'
 
 export default class DemoRedux extends Component {
@@ -9,6 +10,8 @@ export default class DemoRedux extends Component {
         <DemoTangGiamFontSize />
         <hr />
         <BaiTapChonXe />
+        <hr />
+        <BaiTapQuanLyUsers />
       </div>
     )
   }
