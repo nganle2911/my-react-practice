@@ -31,6 +31,7 @@ import DemoRedux from "./Pages/DemoRedux/DemoRedux";
 // Cấu hình Redux Store
 import { Provider } from "react-redux";
 import { store } from "./redux/configStore";
+import BaiTapGame from "./Pages/DemoRedux/BaiTapGame/BaiTapGame";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -70,6 +71,7 @@ root.render(
             <Route path="form" element={<ReactForm />}></Route>
             <Route path="reactlifecycle" element={<ReactLifeCycle />}></Route>
             <Route path="redux" element={<DemoRedux />}></Route>
+            <Route path="gamexucxac" element={<BaiTapGame />}></Route>
 
             {/* <Route path="*" element={<Page404 />}></Route> */}
             <Route path="*" element={<Navigate to="" />}></Route>
