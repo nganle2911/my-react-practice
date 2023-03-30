@@ -16,6 +16,7 @@ export const gameReducer = (state = stateDefault, action) => {
             state.valueOfBet = action.payload;
             return {...state};  
         };
+        
         case 'PLAY_GAME': {
             // Xử lý tạo ra mảng xúc xắc ngẫu nhiên để thay đổi mảng xúc xắc cũ 
             let arrRandomDice = [];

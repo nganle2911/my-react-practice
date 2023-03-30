@@ -3,13 +3,13 @@ import { connect } from 'react-redux'
 
 class XucXac extends Component {
 
-  betValue = (val) => {
-    const action = {
-      type: 'BET',
-      payload: val
-    }
-    this.props.dispatch(action); 
-  }
+  // betValue = (val) => {
+  //   const action = {
+  //     type: 'BET',
+  //     payload: val
+  //   }
+  //   this.props.dispatch(action); 
+  // }
 
   render() {
     let {arrDice} = this.props;
@@ -20,7 +20,11 @@ class XucXac extends Component {
             <div className='row text-center'>
                 <div className='col-4'>
                     <button className='btn btn-danger mx-5' onClick={() => {
-                      this.betValue(true); 
+                      const action = {
+                        type: "BET", 
+                        payload: true
+                      }
+                      this.props.dispatch(action)
                     }}>
                         <div className='bg-danger display-4 p-5'>
                             Tài
@@ -37,7 +41,11 @@ class XucXac extends Component {
                 </div>
                 <div className='col-4'>
                 <button className='btn btn-danger mx-5' onClick={() => {
-                  this.betValue(false);
+                  const action = {
+                    type: 'BET',
+                    payload: false
+                  }
+                  this.props.dispatch(action)
                 }}>
                         <div className='bg-danger display-4 p-5'>
                             Xỉu
