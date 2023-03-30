@@ -31,10 +31,22 @@ export const gameReducer = (state = stateDefault, action) => {
             }
             // Update state random dice
             state.arrDice = arrRandomDice; 
+
+            // Xử lý tính điểm
+            let sumPoints = arrRandomDice.reduce((sum, dice) => {
+                return sum + dice.diem; 
+            }, 0)
+
+            // Xử lý thắng 
+            if ((sumPoints > 11 & state.valueOfBet) || (sumPoints <= 11 && !state.valueOfBet)) {
+                // Thắng: cập nhật lại state số bàn thắng
+                state.sumOfWin += 1; 
+            }
+            // Luôn luôn tăng state sau mỗi lần play game
+            state.sumOfPlay += 1; 
             return {...state};
         }
 
-    
         default:
             return state;
     }

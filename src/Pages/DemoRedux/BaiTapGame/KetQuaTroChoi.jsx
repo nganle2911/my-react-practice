@@ -21,6 +21,9 @@ class KetQuaTroChoi extends Component {
               const action = {
                 type: 'PLAY_GAME'
               }
+              // setInterval(() => {
+              //   this.props.dispatch(action);
+              // }, 1000);
               this.props.dispatch(action); 
             }}>Play game</button>
         </div>
