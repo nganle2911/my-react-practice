@@ -6,13 +6,13 @@ class KetQuaTroChoi extends Component {
     return (
       <div className='text-center pt-5'>
         <div className="display-4">
-          Bạn cược: <span className="text-success">Tài</span>
+          Your Bet: <span className="text-success">Tài</span>
         </div>
         <div className="display-4">
-            Số bàn thắng: <span className="text-primary">0</span>
+            Sum of your Wins: <span className="text-primary">0</span>
         </div>
         <div className="display-4">
-            Tổng số bàn chơi: <span className="text-warning">0</span>
+            Sum of your Play: <span className="text-warning">0</span>
         </div>
         <div className='display-4'>
             <button className='btn btn-success'>Play game</button>
