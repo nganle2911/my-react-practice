@@ -2,6 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 class XucXac extends Component {
+
+  betValue = (val) => {
+    const action = {
+      type: 'BET',
+      payload: val
+    }
+    this.props.dispatch(action); 
+  }
+
   render() {
     let {arrDice} = this.props;
     // console.log(arrDice);
@@ -10,7 +19,9 @@ class XucXac extends Component {
         <div className='container-fluid'>
             <div className='row text-center'>
                 <div className='col-4'>
-                    <button className='btn btn-danger mx-5'>
+                    <button className='btn btn-danger mx-5' onClick={() => {
+                      this.betValue(true); 
+                    }}>
                         <div className='bg-danger display-4 p-5'>
                             Tài
                         </div>
@@ -25,7 +36,9 @@ class XucXac extends Component {
                     })}
                 </div>
                 <div className='col-4'>
-                <button className='btn btn-danger mx-5'>
+                <button className='btn btn-danger mx-5' onClick={() => {
+                  this.betValue(false);
+                }}>
                         <div className='bg-danger display-4 p-5'>
                             Xỉu
                         </div>
