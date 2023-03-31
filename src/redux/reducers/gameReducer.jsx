@@ -10,10 +10,10 @@ const stateDefault = {
     valueOfBet: true, //true: tai, false: xiu 
 }
 
-export const gameReducer = (state = stateDefault, action) => {
-    switch (action.type) {
+export const gameReducer = (state = stateDefault, {type, payload}) => {
+    switch (type) {
         case 'BET': {
-            state.valueOfBet = action.payload;
+            state.valueOfBet = payload;
             return {...state};  
         };
         
