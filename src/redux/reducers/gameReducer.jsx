@@ -13,8 +13,10 @@ const stateDefault = {
 export const gameReducer = (state = stateDefault, {type, payload}) => {
     switch (type) {
         case 'BET': {
-            state.valueOfBet = payload;
-            return {...state};  
+            return {
+                ...state,
+                valueOfBet : payload
+            } 
         };
         
         case 'PLAY_GAME': {
