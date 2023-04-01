@@ -24,6 +24,7 @@ export default class HomeTemplate extends Component {
               <ul className="dropdown-menu">
                 <li>
                   <NavLink className="dropdown-item" to="/demo-usestate">useState</NavLink>
+                  <NavLink className="dropdown-item" to="/demo-useeffect">useEffect</NavLink>
                 </li>
               </ul>
             </div>
