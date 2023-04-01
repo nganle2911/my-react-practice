@@ -17,16 +17,17 @@ export default class HomeTemplate extends Component {
             <NavLink className={({isActive}) => isActive ? 'nav-link fw-bold text-info text-uppercase' : 'nav-link'} to='/redux'>Redux</NavLink>
             <NavLink className={({isActive}) => isActive ? 'nav-link fw-bold text-info text-uppercase' : 'nav-link'} to='/gamexucxac'>Dice Game</NavLink>
 
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Hook Demo
+            <div className="dropdown">
+              <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hooks
               </button>
-              <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink className="dropdown-item" to="/demo-usestate">useState</NavLink>
+                </li>
               </ul>
             </div>
+
         </header>
         <div className='content' style={{minHeight: '75vh'}}>
             <Outlet />
