@@ -40,8 +40,8 @@ const Modal = (props) => {
                 aria-label="Close"
               />
             </div>
-            <div className="modal-body">
-                <img src='https://i.pravatar.cc?u=1' alt='...' className='w-100' />
+            <div className="modal-body text-center">
+                <img src='https://i.pravatar.cc?u=1' alt='...' width={300} height={300} style={{objectFit: 'cover'}} />
             </div>
             <div className="modal-footer">
               <button

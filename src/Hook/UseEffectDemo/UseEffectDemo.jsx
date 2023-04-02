@@ -9,14 +9,36 @@ const UseEffectDemo = () => {
     {id: 1, name: "Product 1", image: "https://picsum.photos/id/21/200/200", price: 1000}
   ]);
 
+  // idProductDetail 
+  const [idProductDetail, setIdProductDetail] = useState(0);
+
+  // state của product detail
+  const [productDetail, setProductDetail] = useState({}); 
+
   const getApiProduct = async () => {
     let result = await axios({
       url: "https://shop.cyberlearn.vn/api/product",
       method: "GET"
     });
-
     setArrProduct(result.data.content);
   }
+
+  const getProductDetail = async () => {
+    let result = await axios({
+      url: "https://shop.cyberlearn.vn/api/product/getbyid?id=" + idProductDetail,
+      method: 'GET'
+    });
+    // Sau khi lấy dữ liệu api productDetail về thì set vào stateProductDetail 
+    setProductDetail(result.data.content);
+    console.log(result.data.content);
+  }
+
+  useEffect(() => {
+    // Bất kỳ sự kiện nào làm state idProductDetail thay đổi thì hàm này sẽ chạy (ComponentDidUpdate mà có if)
+    if (idProductDetail !== 0) {
+      getProductDetail(); 
+    }
+  }, []);
 
   useEffect(() => {
     console.log('log useEffect');
