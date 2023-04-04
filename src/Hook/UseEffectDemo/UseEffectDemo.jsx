@@ -9,6 +9,7 @@ const UseEffectDemo = () => {
         {id: 1, name: "brew coffee", image: "https://picsum.photos/200/200/", price: 500}
     ]);
     const [idProductDetail, setIdProductDetail] = useState(0);
+
     const [productDetail, setProductDetail] = useState({});
 
     
@@ -35,9 +36,14 @@ const UseEffectDemo = () => {
         // Bất kỳ sự kiện nào làm state idProductDetail thay đổi -> thì hàm này sẽ chạy (giống componentDidUpdate mà có if)
         if (idProductDetail !== 0) {
             getProductDetail();
-            console.log("when idProductDetail changed!");
+            // console.log("when idProductDetail changed!");
         }
-    },[idProductDetail]);
+
+        return () => {
+            console.log("Hàm này sẽ kích hoạt khi: 1 là component mất khỏi giao diện, 2 là khi dependency tham số thứ 2 thay đổi");
+            console.log("Clear đi các biến hoặc hàm chạy ngầm giống componentWilUnmount");
+        }
+    },[idProductDetail]); // đối với object hoặc array thì biết được thay đổi hay không thì phải là object mới hoặc array mới (spread operator ...)
 
     // ? Trường hợp 2: Khi không có tham số thứ 2 
     // Thực thi lần đầu sau render & khi muốn bất kỳ state nào thay đổi, thì useEffect này cũng sẽ thay đổi theo 
@@ -51,7 +57,12 @@ const UseEffectDemo = () => {
         // Hàm callback tham số thứ 1 sẽ chạy lần đầu tiên sau khi giao diện render(), & nó chỉ chạy 1 lần duy nhất nếu tham số thứ 2 là mảng rỗng []
         // Thường dùng call API 
         getApiProduct();
-        console.log("componentDidMount")
+        console.log("componentDidMount");
+
+        return () => {
+            console.log("Hàm này sẽ kích hoạt khi: 1 là component mất khỏi giao diện, 2 là khi dependency tham số thứ 2 thay đổi");
+            console.log("Clear đi các biến hoặc hàm chạy ngầm giống componentWilUnmount");
+        }
 
     }, []); 
 
