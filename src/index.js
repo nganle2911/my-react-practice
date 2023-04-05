@@ -34,6 +34,7 @@ import { store } from "./redux/configStore";
 import BaiTapGame from "./Pages/DemoRedux/BaiTapGame/BaiTapGame";
 import UseStateDemo from "./Hook/UseStateDemo/UseStateDemo";
 import UseEffectDemo from "./Hook/UseEffectDemo/UseEffectDemo";
+import { UseCallbackDemo } from "./Hook/UseCallbackDemo/UseCallbackDemo";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -76,6 +77,8 @@ root.render(
             <Route path="gamexucxac" element={<BaiTapGame />}></Route>
             <Route path="demo-usestate" element={<UseStateDemo />}></Route>
             <Route path="demo-useeffect" element={<UseEffectDemo />}></Route>
+            <Route path="demo-usecallback" element={<UseCallbackDemo />}></Route>
+            
 
             {/* <Route path="*" element={<Page404 />}></Route> */}
             <Route path="*" element={<Navigate to="" />}></Route>
