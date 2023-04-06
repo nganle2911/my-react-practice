@@ -1,6 +1,10 @@
 import React, { useCallback, useState } from 'react'
 import Comment from './Comment';
 
+// dữ liệu không thay đổi 
+// dữ liệu thay đổi là state (đặt trong state)
+const arr = []; 
+
 export const UseCallbackDemo = () => {
 
     let [like, setLike] = useState(1); 
