@@ -37,6 +37,7 @@ import UseEffectDemo from "./Hook/UseEffectDemo/UseEffectDemo";
 import { UseCallbackDemo } from "./Hook/UseCallbackDemo/UseCallbackDemo";
 import { UseMemoDemo } from "./Hook/UseMemoDemo/UseMemoDemo";
 import DemoHookRedux from "./Hook/HookRedux/DemoHookRedux";
+import UseRefDemo from "./Hook/UseRefDemo/UseRefDemo";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -82,6 +83,7 @@ root.render(
             <Route path="demo-usecallback" element={<UseCallbackDemo />}></Route>
             <Route path="demo-usememo" element={<UseMemoDemo />}></Route>
             <Route path="demo-useredux" element={<DemoHookRedux />}></Route>
+            <Route path="demo-useref" element={<UseRefDemo />}></Route>
             
 
             {/* <Route path="*" element={<Page404 />}></Route> */}

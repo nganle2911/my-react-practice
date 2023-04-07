@@ -28,6 +28,7 @@ export default class HomeTemplate extends Component {
                   <NavLink className="dropdown-item" to="/demo-usecallback">useCallback</NavLink>
                   <NavLink className="dropdown-item" to="/demo-usememo">useMemo</NavLink>
                   <NavLink className="dropdown-item" to="/demo-useredux">useRedux</NavLink>
+                  <NavLink className="dropdown-item" to="/demo-useref">useRef</NavLink>
                 </li>
               </ul>
             </div>
