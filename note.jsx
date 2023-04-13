@@ -1,25 +1,44 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { tangGiamFontSizeAction } from '../../redux/actions/fontSizeAction';
+import React, { useRef, useState } from 'react'
+const UseRefDemo = () => {
 
-const DemoHookRedux = () => {
-     
-    const fontSize = useSelector(state => state.fontSizeReducer);  
-    const dispatch = useDispatch();
+    const [arrComment, setArrComment] = useState([]);
+    const commentRef = useRef(""); 
+    const inputComment = useRef(null);
+
+    console.log("render");
+
+    const handleChange = (e) => {
+        const {value} = e.target; 
+        commentRef.current = value;
+
+        // Đổi màu nội dung khi được nhập vào input 
+        if (inputComment.current.style.color !== "red") {
+            inputComment.current.style.color = "red";
+        } else {
+            inputComment.current.style.color = "green"; 
+        }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault(); 
+        setArrComment([...arrComment, commentRef.current]);
+    }
 
   return (
     <div className='container'>
-        <h3 className='mt-3'>Increase / Decrease FontSize</h3>
-        <p style={{fontSize: fontSize}}>Sanctus takimata elitr et et labore sadipscing et, diam diam ipsum gubergren duo, est sed kasd stet ipsum sit erat.</p>
-        <button className='btn btn-success' onClick={() => {
-            const action = tangGiamFontSizeAction(3); 
-            dispatch(action);
-        }}>+</button>
-        <button className='btn btn-success mx-2' onClick={() => {
-            const action = tangGiamFontSizeAction(-3);
-            dispatch(action);
-        }}>-</button>
+        <h3 className='mt-3'>Demo useRef</h3>
+        {arrComment.map((item, index) => {
+            return <p className='p-2 bg-light mt-2' key={index}>
+                {item}
+            </p>
+        })}
+        
+        <form className='form-group' onSubmit={handleSubmit}>
+            <input ref={inputComment} id='comment' className='form-control' onInput={handleChange} />
+            <button className='btn btn-success mt-2' type='submit'>OK</button>
+        </form>
     </div>
   )
 }
-export default DemoHookRedux
+
+export default UseRefDemo;
