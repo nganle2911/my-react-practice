@@ -1,8 +1,11 @@
 import React, { useRef } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const LoginDemo = () => {
 
     const userLoginRef = useRef({username: '', password: ''}); 
+    const navigate = useNavigate(); 
+
     const handleChange = (e) => {
         const {value, name} = e.target;
         userLoginRef.current[name] = value; 
@@ -10,6 +13,13 @@ const LoginDemo = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const {username, password} = userLoginRef.current;
+        if (username == "cybersoft" && password == "cybersoft") {
+            // Đúng thì chuyển hướng qua trang profile 
+            navigate('/profile');
+        } else {
+            alert('Your username or password is incorrect !');
+        }
     }
 
   return (
