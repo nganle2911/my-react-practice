@@ -32,6 +32,16 @@ export default class HomeTemplate extends Component {
                 </li>
               </ul>
             </div>
+            <div className="dropdown mx-3">
+              <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hook Router
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink className="dropdown-item" to="/demo-usenavigate">useNavigate</NavLink>
+                </li>
+              </ul>
+            </div>
 
         </header>
         <div className='content' style={{minHeight: '75vh'}}>
