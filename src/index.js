@@ -89,6 +89,7 @@ root.render(
             <Route path="demo-useref" element={<UseRefDemo />}></Route>
             <Route path="demo-usenavigate" element={<LoginDemo />}></Route>
             <Route path="profile" element={<ProfileDemo />}></Route>
+            
             <Route path="detail">
               <Route path=":idProduct" element={<Detail />}></Route>
             </Route>
