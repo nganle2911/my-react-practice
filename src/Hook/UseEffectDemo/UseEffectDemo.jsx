@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Modal from './Modal';
+import { NavLink } from 'react-router-dom';
 
 const UseEffectDemo = () => {
 
@@ -78,6 +79,7 @@ const UseEffectDemo = () => {
                         <button className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#modalId" onClick={() => {
                             setIdProductDetail(item.id); 
                         }}>View Detail</button>
+                        <NavLink className="btn btn-danger mx-2" to={`/detail/${item.id}`}>View Detail Page</NavLink>
                     </div>
                 </div>
             </div>
