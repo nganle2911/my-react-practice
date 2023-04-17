@@ -6,10 +6,10 @@ const UseSearchParamsDemo = () => {
 
     const [searchParams, setSearchParams] = useSearchParams(); 
     const [arrProduct, setArrProduct] = useState([]);
-    const keyword = useRef(''); 
+    const inputRef = useRef(''); 
 
     const getProductApi = async () => {
-      let keyWord = searchParams.get("keyword");
+      let keyWord = searchParams.get("tuKhoa");
       let result = await axios({
         url: `https://shop.cyberlearn.vn/api/Product?keyword=${keyWord}`,
         method: "GET",
@@ -23,22 +23,22 @@ const UseSearchParamsDemo = () => {
 
         // Hàm đưa tham số lên url tại trang này 
         setSearchParams({
-            keyword: keyword.current
+            tuKhoa: inputRef.current
         })
     }
 
     const handleChange = (e) => {
-        keyword.current = e.target.value; 
+        inputRef.current = e.target.value; 
         // console.log(keyword.current);
     }
 
     useEffect(() => {
         // Keyword thay đổi thì mới chạy hàm này (lần đầu tiên không có keyword => null nên không chạy)
-        if(searchParams.get('keyword')) {
+        if(searchParams.get('tuKhoa')) {
             // console.log('call api');
             getProductApi(); 
         }
-    }, [searchParams.get('keyword')]);
+    }, [searchParams.get('tuKhoa')]);
 
   return (
     <div className='container'>
@@ -51,7 +51,7 @@ const UseSearchParamsDemo = () => {
             <div className='row'>
                 {arrProduct.map((item, index) => {
                     return (
-                      <div className="col-3">
+                      <div className="col-3" key={index}>
                         <div className="card">
                           <img src={item.image} alt="..." />
                           <div className="card-body">
