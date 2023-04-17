@@ -1,10 +1,22 @@
-import React, { useRef } from 'react'
+import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react'
 import { NavLink, useSearchParams } from 'react-router-dom'
 
 const UseSearchParamsDemo = () => {
 
     const [searchParams, setSearchParams] = useSearchParams(); 
+    const [arrProduct, setArrProduct] = useState([]);
     const keyword = useRef(''); 
+
+    const getProductApi = async () => {
+      let keyWord = searchParams.get("keyword");
+      let result = await axios({
+        url: `https://shop.cyberlearn.vn/api/Product?keyword=${keyWord}`,
+        method: "GET",
+      });
+
+      setArrProduct(result.data.content);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,6 +32,14 @@ const UseSearchParamsDemo = () => {
         // console.log(keyword.current);
     }
 
+    useEffect(() => {
+        // Keyword thay đổi thì mới chạy hàm này (lần đầu tiên không có keyword => null nên không chạy)
+        if(searchParams.get('keyword')) {
+            // console.log('call api');
+            getProductApi(); 
+        }
+    }, [searchParams.get('keyword')]);
+
   return (
     <div className='container'>
         <form onSubmit={handleSubmit}>
@@ -29,16 +49,22 @@ const UseSearchParamsDemo = () => {
         <div className='mt-3'>
             <h3>Search Result</h3>
             <div className='row'>
-                <div className='col-3'>
-                    <div className='card'>
-                        <img src='https://i.pravatar.cc?u=1' alt='...' />
-                        <div className='card-body'>
-                            <p>Name</p>
-                            <p>Price</p>
-                            <NavLink className="btn btn-primary" to={`/detail`}>View Detail</NavLink>
+                {arrProduct.map((item, index) => {
+                    return (
+                      <div className="col-3">
+                        <div className="card">
+                          <img src={item.image} alt="..." />
+                          <div className="card-body">
+                            <p>{item.name}</p>
+                            <p>{item.price}$</p>
+                            <NavLink className="btn btn-primary" to={`/detail`}>
+                              View Detail
+                            </NavLink>
+                          </div>
                         </div>
-                    </div>
-                </div>
+                      </div>
+                    );
+                })}
             </div>
         </div>
     </div>
