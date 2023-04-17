@@ -41,6 +41,7 @@ import UseRefDemo from "./Hook/UseRefDemo/UseRefDemo";
 import LoginDemo from "./Hook/UseNavigateDemo/LoginDemo";
 import ProfileDemo from "./Hook/UseNavigateDemo/ProfileDemo";
 import Detail from "./Pages/Detail/Detail";
+import UseSearchParamsDemo from "./Hook/UseSearchParamsDemo/UseSearchParamsDemo";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -89,10 +90,11 @@ root.render(
             <Route path="demo-useref" element={<UseRefDemo />}></Route>
             <Route path="demo-usenavigate" element={<LoginDemo />}></Route>
             <Route path="profile" element={<ProfileDemo />}></Route>
-            
+            <Route path="search" element={<UseSearchParamsDemo />}></Route>
             <Route path="detail">
               <Route path=":idProduct" element={<Detail />}></Route>
             </Route>
+
             
 
             {/* <Route path="*" element={<Page404 />}></Route> */}

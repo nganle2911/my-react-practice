@@ -40,6 +40,9 @@ export default class HomeTemplate extends Component {
                 <li>
                   <NavLink className="dropdown-item" to="/demo-usenavigate">useNavigate</NavLink>
                 </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/search">useSearchParams</NavLink>
+                </li>
               </ul>
             </div>
 

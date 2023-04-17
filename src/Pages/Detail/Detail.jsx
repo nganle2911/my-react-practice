@@ -14,14 +14,14 @@ const Detail = () => {
     });
     // Kết quả trả về => đưa vào state 
     setProdDetail(result.data.content);
-    console.log(result.data.content)
+    // console.log(result.data.content)
   }
 
   useEffect(() => {
     // Call api right after UI is loaded 
     getProductDetailById(); 
-  }, [])
-
+  }, [params.idProduct]);
+ 
   return (
     <div className="container">
       <div className="row">
@@ -37,17 +37,19 @@ const Detail = () => {
       <div>
         <h3>Related Products</h3>
         <div className="row">
-          {prodDetail.relatedProducts.map((item, index) => {
-            return <div className="col-4" key={index}>
-              <div className="card">
-                <img src={item.image} alt="..." />
-                <div className="card-body">
-                  <p>{item.name}</p>
-                  <p>{item.price}</p>
-                  <NavLink className="btn btn-danger" to={`/detail/${item.id}`}>View Detail</NavLink>
+          {prodDetail.relatedProducts?.map((item, index) => {
+            return (
+              <div className="col-4" key={index}>
+                <div className="card">
+                  <img src={item.image} alt="..." />
+                  <div className="card-body">
+                    <p>{item.name}</p>
+                    <p>{item.price}$</p>
+                    <NavLink className="btn btn-danger" to={`/detail/${item.id}`}>View Detail</NavLink>
+                  </div>
                 </div>
               </div>
-            </div>
+            )
           })}
         </div>
       </div>
