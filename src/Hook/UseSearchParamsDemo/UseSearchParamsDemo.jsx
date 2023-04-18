@@ -6,7 +6,7 @@ const UseSearchParamsDemo = () => {
 
     const [searchParams, setSearchParams] = useSearchParams(); 
     const [arrProduct, setArrProduct] = useState([]);
-    const inputRef = useRef(''); 
+    const inputRef = useRef(''); //dom tới thẻ input 
 
     const getProductApi = async () => {
       let keyWord = searchParams.get("tuKhoa");
