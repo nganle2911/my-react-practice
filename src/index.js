@@ -42,6 +42,7 @@ import LoginDemo from "./Hook/UseNavigateDemo/LoginDemo";
 import ProfileDemo from "./Hook/UseNavigateDemo/ProfileDemo";
 import Detail from "./Pages/Detail/Detail";
 import UseSearchParamsDemo from "./Hook/UseSearchParamsDemo/UseSearchParamsDemo";
+import RichPerson from "./HOC/RichPerson";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -94,7 +95,7 @@ root.render(
             <Route path="detail">
               <Route path=":idProduct" element={<Detail />}></Route>
             </Route>
-
+            <Route path="hoc" element={<RichPerson />}></Route>
             
 
             {/* <Route path="*" element={<Page404 />}></Route> */}
